@@ -13,7 +13,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/table-editor",
+            "baseHref": "table-editor",
+            "outputPath": "docs/table-editor",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
