@@ -1,0 +1,40 @@
+<div class="container">
+  <h2 class="title">Редактор табличных данных</h2>
+	<input type="file" class= "mb-3" (change)="loadFile($event)" accept=".json, .csv">
+  <textarea [(ngModel)]="allData" rows="10" cols="89"></textarea>
+  <br>
+	<div class="d-grid gap-2">
+		<button class="btn btn-success" (click)="loadJSON()" type="button">Продолжить загрузку данных в формате JSON</button>
+		<button class="btn btn-success" (click)="loadCSV()" type="button">Продолжить загрузку данных в формате CSV</button>
+	</div>
+  <br>
+  <table class="table table-bordered border-success">
+    <thead>
+      <tr>
+        <th *ngFor="let column of dataService.getColumns()">{{ column }}</th>
+        <th>Действия</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of dataService.getRows(); let i = index">
+        <td *ngFor="let column of dataService.getColumns()">
+          <input class="form-control" [(ngModel)]="row[column]">
+        </td>
+        <td>
+          <button class="btn" (click)="deleteRow(i)">❌</button>
+        </td>
+        <td>
+          <button class="btn btn-outline-secondary" (click)="moveUp(i)" [disabled]="i === 0">↑</button>
+          <button class="btn btn-outline-secondary" (click)="moveDown(i)" [disabled]="i === dataService.getRows().length - 1">↓</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+	<div class="btn-group" role="group" aria-label="Table Actions">
+    <button class="btn btn-outline-success" (click)="addRow()" [disabled]="!dataService.getRows().length">Добавить строку</button>
+		<button class="btn btn-outline-success" (click)="unloadJSON()">Выгрузить в формате JSON</button>
+  	<button class="btn btn-outline-success" (click)="unloadCSV()">Выгрузить в формате CSV</button>
+		<button class="btn btn-outline-success" (click)="downloadCSV()">Скачать в формате CSV</button>
+		<button class="btn btn-outline-success" (click)="downloadJSON(allData)">Скачать в формате JSON</button>
+  </div>
+</div>

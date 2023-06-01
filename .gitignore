@@ -1,0 +1,8 @@
+/node_modules
+.git
+/packages
+.DS_Store
+.log
+.lock
+.tmp
+/.angular/cache

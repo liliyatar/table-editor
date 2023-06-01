@@ -1,0 +1,15 @@
+.container {
+  max-width: 800px;
+}
+
+.btn {
+	margin: 5px;
+}
+
+.title {
+	text-align: center;
+}
+
+.btn-group {
+	width: 100%;
+}
